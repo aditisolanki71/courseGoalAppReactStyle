@@ -23,6 +23,9 @@ function App() {
   }
   return (
     <div>
+      <div id="goal-form">
+        <CourseInput onCourseInpurSubmit={handleCourseInputSubmit}/>
+      </div>
       <div id="goals">
         <CourseGoalList onCourseGoalDelete={handleCourseGoalDelete} items={courseGoal}/>
       </div>
