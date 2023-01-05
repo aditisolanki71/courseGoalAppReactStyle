@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+import CourseGoalList from "./components/CourseGoals/CourseGoalList/CourseGoalList"
+import CourseInput from "./components/CourseGoals/CourseInput/CourseInput"
 import './App.css';
 
 function App() {
+  const [courseGoal,setCourseGoal] = useState([
+    {name: "React", id: "1"},
+    {name: "Webpack", id: "2"},
+    {name: "Microfrontend", id: "3"},
+    {name: "Typescript", id: "4"},
+    {name: "Javascript", id: "5"},
+    {name: "GraphQL", id: "6"},
+    {name: "Node", id: "7"}
+  
+  ]);
+  const handleCourseInputSubmit = (course) => {
+    setCourseGoal((previouseCourses) => [...previouseCourses,course])
+  }
+  const handleCourseGoalDelete = (id) => {
+    console.log("id is",id);
+    setCourseGoal(courseGoal.filter(course => course.id !== id));
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div id="goals">
+        <CourseGoalList onCourseGoalDelete={handleCourseGoalDelete} items={courseGoal}/>
+      </div>
     </div>
   );
 }
